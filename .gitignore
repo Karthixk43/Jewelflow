@@ -1,0 +1,13 @@
+# Dependencies and generated builds
+**/node_modules/
+**/dist/
+
+# Secrets and local runtime files
+**/.env
+**/.env.*
+!**/.env.example
+backend/uploads/
+*.log
+
+# Operating system files
+.DS_Store
