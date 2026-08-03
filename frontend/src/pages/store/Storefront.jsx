@@ -100,24 +100,24 @@ const Storefront = () => {
 
   const bannerSlides = [
     {
-      image: '/banners/banner2.jpg',
+      image: '/banners_v2/banner1.jpg',
+      tagline: 'TRADITIONAL GOLD',
+      title: 'Pure Gold Artistry',
+      description: 'Authentic temple jewellery & bridal waistbands.',
+      position: 'object-[85%_top]',
+    },
+    {
+      image: '/banners_v2/banner2.jpg',
       tagline: 'TIMELESS ELEGANCE',
       title: 'Crafted to Perfection',
       description: 'Exquisite jewellery for every special moment.',
       position: 'object-[85%_top]',
     },
     {
-      image: '/banners/banner1.jpg',
+      image: '/banners_v2/banner3.jpg',
       tagline: 'ROYAL COLLECTION',
       title: 'Heritage & Grace',
       description: 'Handcrafted diamond & emerald bridal masterpieces.',
-      position: 'object-[85%_top]',
-    },
-    {
-      image: '/banners/banner3.jpg',
-      tagline: 'TRADITIONAL GOLD',
-      title: 'Pure Gold Artistry',
-      description: 'Authentic temple jewellery & bridal waistbands.',
       position: 'object-[85%_top]',
     },
   ];
