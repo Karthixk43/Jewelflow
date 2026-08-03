@@ -220,7 +220,7 @@ const Storefront = () => {
 
       {/* Hero Banner Carousel */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
-        <div className="relative h-[220px] sm:h-[300px] md:h-[380px] lg:h-[440px] rounded-[20px] overflow-hidden bg-black shadow-md group">
+        <div className="relative aspect-[2.2/1] sm:aspect-[2.4/1] md:h-[360px] lg:h-[420px] max-h-[440px] rounded-[20px] overflow-hidden bg-black shadow-md group">
           {bannerSlides.map((slide, idx) => (
             <div
               key={idx}
