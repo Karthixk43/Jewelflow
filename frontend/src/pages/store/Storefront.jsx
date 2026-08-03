@@ -105,23 +105,20 @@ const Storefront = () => {
       title: 'Crafted to Perfection',
       description: 'Exquisite jewellery for every special moment.',
       position: 'object-[90%_top] sm:object-[90%_top] md:object-[88%_top]',
-      scale: 'scale-100',
     },
     {
       image: '/banners/banner1.jpg',
       tagline: 'ROYAL COLLECTION',
       title: 'Heritage & Grace',
       description: 'Handcrafted diamond & emerald bridal masterpieces.',
-      position: 'object-[96%_top] sm:object-[94%_top] md:object-[92%_top]',
-      scale: 'scale-125 origin-[94%_10%]',
+      position: 'object-[96%_top] sm:object-[94%_top] md:object-[90%_top]',
     },
     {
       image: '/banners/banner3.jpg',
       tagline: 'TRADITIONAL GOLD',
       title: 'Pure Gold Artistry',
       description: 'Authentic temple jewellery & bridal waistbands.',
-      position: 'object-[96%_top] sm:object-[94%_top] md:object-[92%_top]',
-      scale: 'scale-[1.45] origin-[95%_8%]',
+      position: 'object-[96%_top] sm:object-[94%_top] md:object-[90%_top]',
     },
   ];
 
@@ -130,7 +127,7 @@ const Storefront = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [bannerSlides.length]);
 
@@ -235,7 +232,7 @@ const Storefront = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className={`w-full h-full object-cover transition-transform duration-500 ${slide.position} ${slide.scale || ''}`}
+                className={`w-full h-full object-cover ${slide.position}`}
               />
               {/* Soft dark gradient overlay restricted to the left side for clean text contrast */}
               <div className="absolute inset-y-0 left-0 w-[60%] sm:w-[50%] md:w-[45%] bg-gradient-to-r from-black/90 via-black/40 to-transparent pointer-events-none" />
