@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Search, Phone, MapPin, Instagram, Facebook, Calendar, MessageCircle, X } from 'lucide-react';
+import { Search, Phone, MapPin, Instagram, Facebook, Calendar, MessageCircle, X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import api from '../../api/client';
 import { getErrorMessage } from '../../utils/error';
 
@@ -34,14 +34,14 @@ const AppointmentModal = ({ shop, onClose }) => {
     e.preventDefault();
     setSubmitting(true);
     setError('');
-      try {
-        await api.post(`/appointments?shop=${shop.slug}`, form);
-        setSuccess(true);
-      } catch (err) {
-        setError(getErrorMessage(err, 'Something went wrong'));
-      } finally {
-        setSubmitting(false);
-      }
+    try {
+      await api.post(`/appointments?shop=${shop.slug}`, form);
+      setSuccess(true);
+    } catch (err) {
+      setError(getErrorMessage(err, 'Something went wrong'));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -97,6 +97,36 @@ const Storefront = () => {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [showAppointment, setShowAppointment] = useState(false);
+
+  const bannerSlides = [
+    {
+      image: '/banners/banner2.jpg',
+      tagline: 'TIMELESS ELEGANCE',
+      title: 'Crafted to Perfection',
+      description: 'Exquisite jewellery for every special moment.',
+    },
+    {
+      image: '/banners/banner1.jpg',
+      tagline: 'ROYAL COLLECTION',
+      title: 'Heritage & Grace',
+      description: 'Handcrafted diamond & emerald bridal masterpieces.',
+    },
+    {
+      image: '/banners/banner3.jpg',
+      tagline: 'TRADITIONAL GOLD',
+      title: 'Pure Gold Artistry',
+      description: 'Authentic temple jewellery & bridal waistbands.',
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [bannerSlides.length]);
 
   useEffect(() => {
     const load = async () => {
@@ -188,33 +218,74 @@ const Storefront = () => {
         </div>
       </header>
 
-      {/* Hero */}
-      <div className="relative h-[200px] sm:h-[220px] md:h-[300px] lg:h-[360px] overflow-hidden bg-gray-100 flex items-center">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/hero-bg.png"
-            alt="Timeless Jewellery"
-            className="w-full h-full object-cover object-right sm:object-center"
-          />
-          {/* Very subtle gradient overlay to keep text readable while keeping the background rich and colorful */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-white/10 to-transparent z-10" />
-        </div>
+      {/* Hero Banner Carousel */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
+        <div className="relative h-[250px] sm:h-[320px] md:h-[400px] lg:h-[460px] rounded-2xl md:rounded-3xl overflow-hidden bg-black shadow-md group">
+          {bannerSlides.map((slide, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover object-[center_20%] sm:object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
 
-        <div className="max-w-6xl mx-auto px-4 w-full relative z-20">
-          <div className="max-w-[55%] sm:max-w-[50%] py-1">
-            <h2 className="text-[17px] sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-gray-900 leading-tight">
-              Timeless Jewellery,<br /> Crafted for You
-            </h2>
-            <p className="text-gray-600 mt-2 text-[9px] sm:text-xs md:text-sm font-medium leading-relaxed">
-              Explore our collection · Enquire on WhatsApp · Visit our store
-            </p>
-            <div className="h-0.5 sm:h-1 w-8 sm:w-10 mt-3 rounded-full" style={{ backgroundColor: primaryColor }} />
+              <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
+                <div className="max-w-[85%] sm:max-w-[60%] text-white">
+                  <p className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-gold-400 uppercase mb-0.5 sm:mb-1">
+                    {slide.tagline}
+                  </p>
+                  <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-sm">
+                    {slide.title}
+                  </h2>
+                  <p className="text-gray-200 mt-1 text-[11px] sm:text-xs md:text-sm font-light line-clamp-2">
+                    {slide.description}
+                  </p>
+                  <a
+                    href="#products"
+                    className="inline-flex items-center gap-1.5 mt-3 sm:mt-5 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-semibold text-white transition-all shadow active:scale-95"
+                    style={{ backgroundColor: primaryColor }}
+                  >
+                    Explore Collection <ArrowRight size={14} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev === 0 ? bannerSlides.length - 1 : prev - 1))}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-sm transition-all"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % bannerSlides.length)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-sm transition-all"
+            aria-label="Next Slide"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+            {bannerSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-5 bg-white' : 'w-1.5 bg-white/50'}`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>
 
       {/* Search & Filters */}
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div id="products" className="max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row gap-3 mb-6">
           <div className="relative flex-1">
             <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
