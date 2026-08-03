@@ -4,6 +4,11 @@ const { getDatabaseConfig } = require('../config');
 
 const pool = new Pool(getDatabaseConfig());
 
+// Prevent uncaught exceptions on idle client errors
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client:', err);
+});
+
 const createTables = async () => {
   const client = await pool.connect();
 

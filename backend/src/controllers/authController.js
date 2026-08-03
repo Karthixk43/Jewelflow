@@ -17,7 +17,7 @@ const getResetResponse = (token) => {
 
 // Register a new shop with admin user
 const registerShop = async (req, res) => {
-  const client = await db.getClient();
+  let client;
 
   try {
     const {
@@ -48,6 +48,7 @@ const registerShop = async (req, res) => {
       return res.status(400).json({ error: 'Username must be 3-50 characters' });
     }
 
+    client = await db.getClient();
     await client.query('BEGIN');
 
     // Check if shop slug already exists
@@ -124,11 +125,19 @@ const registerShop = async (req, res) => {
       token
     });
   } catch (error) {
-    await client.query('ROLLBACK');
+    if (client) {
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Rollback failed:', rollbackError);
+      }
+    }
     console.error('Error registering shop:', error);
     res.status(500).json({ error: 'Server error' });
   } finally {
-    client.release();
+    if (client) {
+      client.release();
+    }
   }
 };
 
@@ -263,9 +272,10 @@ const resetPassword = async (req, res) => {
   }
 
   const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
-  const client = await db.getClient();
+  let client;
 
   try {
+    client = await db.getClient();
     await client.query('BEGIN');
     const result = await client.query(
       `SELECT user_id FROM password_reset_tokens
@@ -285,11 +295,19 @@ const resetPassword = async (req, res) => {
     await client.query('COMMIT');
     return res.json({ message: 'Password reset successfully. You can now sign in.' });
   } catch (error) {
-    await client.query('ROLLBACK');
+    if (client) {
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Rollback failed:', rollbackError);
+      }
+    }
     console.error('Error resetting password:', error);
     return res.status(500).json({ error: 'Unable to reset password. Please try again later.' });
   } finally {
-    client.release();
+    if (client) {
+      client.release();
+    }
   }
 };
 
