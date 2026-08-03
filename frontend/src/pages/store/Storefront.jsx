@@ -220,7 +220,7 @@ const Storefront = () => {
 
       {/* Hero Banner Carousel */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
-        <div className="relative aspect-[2.2/1] sm:aspect-[2.4/1] md:h-[360px] lg:h-[420px] max-h-[440px] rounded-[20px] overflow-hidden bg-black shadow-md group">
+        <div className="relative h-[280px] sm:h-[380px] md:h-[460px] lg:h-[520px] max-h-[560px] rounded-[24px] overflow-hidden bg-black shadow-lg group">
           {bannerSlides.map((slide, idx) => (
             <div
               key={idx}
@@ -229,29 +229,29 @@ const Storefront = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover object-right sm:object-center"
+                className="w-full h-full object-cover object-[92%_top] sm:object-[90%_top] md:object-[88%_top]"
               />
               {/* Soft dark gradient overlay restricted to the left side for clean text contrast */}
-              <div className="absolute inset-y-0 left-0 w-[55%] sm:w-[45%] bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-[60%] sm:w-[50%] md:w-[45%] bg-gradient-to-r from-black/90 via-black/40 to-transparent pointer-events-none" />
 
               {/* Text content strictly on the left side */}
-              <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
-                <div className="w-[60%] sm:w-[50%] text-white">
-                  <p className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-gold-400 uppercase mb-0.5 sm:mb-1">
+              <div className="absolute inset-0 flex items-center px-5 sm:px-10 md:px-14">
+                <div className="w-[65%] sm:w-[55%] md:w-[50%] text-white">
+                  <p className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-widest text-amber-300 uppercase mb-1 sm:mb-1.5">
                     {slide.tagline}
                   </p>
-                  <h2 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-sm">
+                  <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">
                     {slide.title}
                   </h2>
-                  <p className="text-gray-200 mt-1 text-[10px] sm:text-xs md:text-sm font-light line-clamp-2">
+                  <p className="text-gray-200 mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base font-light line-clamp-2 drop-shadow-sm">
                     {slide.description}
                   </p>
                   <a
                     href="#products"
-                    className="inline-flex items-center gap-1 mt-2.5 sm:mt-4 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold text-white transition-all shadow active:scale-95"
+                    className="inline-flex items-center gap-1.5 mt-3 sm:mt-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white transition-all shadow-md active:scale-95 hover:brightness-110"
                     style={{ backgroundColor: primaryColor }}
                   >
-                    Explore Collection <ArrowRight size={13} />
+                    Explore Collection <ArrowRight size={15} />
                   </a>
                 </div>
               </div>
