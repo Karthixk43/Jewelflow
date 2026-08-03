@@ -104,21 +104,21 @@ const Storefront = () => {
       tagline: 'TIMELESS ELEGANCE',
       title: 'Crafted to Perfection',
       description: 'Exquisite jewellery for every special moment.',
-      position: 'object-[90%_top] sm:object-[90%_top] md:object-[88%_top]',
+      position: 'object-[85%_top]',
     },
     {
       image: '/banners/banner1.jpg',
       tagline: 'ROYAL COLLECTION',
       title: 'Heritage & Grace',
       description: 'Handcrafted diamond & emerald bridal masterpieces.',
-      position: 'object-[96%_top] sm:object-[94%_top] md:object-[90%_top]',
+      position: 'object-[85%_top]',
     },
     {
       image: '/banners/banner3.jpg',
       tagline: 'TRADITIONAL GOLD',
       title: 'Pure Gold Artistry',
       description: 'Authentic temple jewellery & bridal waistbands.',
-      position: 'object-[96%_top] sm:object-[94%_top] md:object-[90%_top]',
+      position: 'object-[85%_top]',
     },
   ];
 
