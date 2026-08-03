@@ -101,21 +101,9 @@ const Storefront = () => {
   const bannerSlides = [
     {
       image: '/banners/banner2.jpg',
-      tagline: 'TIMELESS ELEGANCE',
-      title: 'Crafted to Perfection',
-      description: 'Exquisite jewellery for every special moment.',
     },
     {
       image: '/banners/banner1.jpg',
-      tagline: 'ROYAL COLLECTION',
-      title: 'Heritage & Grace',
-      description: 'Handcrafted diamond & emerald bridal masterpieces.',
-    },
-    {
-      image: '/banners/banner3.jpg',
-      tagline: 'TRADITIONAL GOLD',
-      title: 'Pure Gold Artistry',
-      description: 'Authentic temple jewellery & bridal waistbands.',
     },
   ];
 
@@ -220,51 +208,17 @@ const Storefront = () => {
 
       {/* Hero Banner Carousel */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
-        <div className="relative h-[220px] sm:h-[300px] md:h-[380px] lg:h-[440px] rounded-[20px] overflow-hidden bg-black shadow-md group">
+        <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-[20px] overflow-hidden bg-black shadow-md group">
           {bannerSlides.map((slide, idx) => (
             <div
               key={idx}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
-              {/* Blurred matching background fill for seamless empty space coverage */}
               <img
                 src={slide.image}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60"
+                alt="Banner"
+                className="w-full h-full object-cover sm:object-contain object-center"
               />
-
-              {/* Main uncropped model image aligned right-center */}
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="relative w-full h-full object-contain object-[right_center]"
-              />
-
-              {/* Dark gradient overlay restricted to left 45% of the banner for text */}
-              <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-black/90 via-black/70 to-transparent pointer-events-none" />
-
-              {/* Text content strictly on the left side */}
-              <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
-                <div className="w-[50%] sm:w-[45%] text-white">
-                  <p className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-gold-400 uppercase mb-0.5 sm:mb-1">
-                    {slide.tagline}
-                  </p>
-                  <h2 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-sm">
-                    {slide.title}
-                  </h2>
-                  <p className="text-gray-200 mt-1 text-[10px] sm:text-xs md:text-sm font-light line-clamp-2">
-                    {slide.description}
-                  </p>
-                  <a
-                    href="#products"
-                    className="inline-flex items-center gap-1 mt-2.5 sm:mt-4 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold text-white transition-all shadow active:scale-95"
-                    style={{ backgroundColor: primaryColor }}
-                  >
-                    Explore <ArrowRight size={13} />
-                  </a>
-                </div>
-              </div>
             </div>
           ))}
 
