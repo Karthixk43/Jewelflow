@@ -229,9 +229,10 @@ const Storefront = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover object-[center_20%] sm:object-center"
+                className={`w-full h-full object-cover ${idx === 0 ? 'object-[center_15%]' : idx === 1 ? 'object-[center_10%]' : 'object-[center_15%]'}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
+              {/* Soft subtle text overlay for contrast while preserving bright model photo colors */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
               <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
                 <div className="max-w-[85%] sm:max-w-[60%] text-white">
