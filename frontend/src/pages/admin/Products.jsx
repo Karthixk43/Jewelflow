@@ -281,9 +281,9 @@ const Products = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((p) => (
             <div key={p.id} className={`card overflow-hidden ${p.is_hidden ? 'opacity-60' : ''}`}>
-              <div className="aspect-square bg-gray-100">
+              <div className="aspect-square bg-gray-50 flex items-center justify-center">
                 {p.images?.[0] ? (
-                  <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
+                  <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain p-1" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-300 text-4xl">💍</div>
                 )}

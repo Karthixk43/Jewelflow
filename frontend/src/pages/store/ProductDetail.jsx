@@ -141,9 +141,9 @@ const ProductDetail = () => {
       <div className="max-w-6xl mx-auto px-4 py-4 md:py-8 grid md:grid-cols-2 gap-6 md:gap-8">
         {/* Images */}
         <div>
-          <div className="aspect-square bg-white rounded-2xl overflow-hidden border shadow-sm relative">
+          <div className="aspect-square bg-gray-50 rounded-2xl overflow-hidden border shadow-sm relative flex items-center justify-center">
             {product.images?.[activeImage] ? (
-              <img src={product.images[activeImage]} alt={product.name} className="w-full h-full object-cover" />
+              <img src={product.images[activeImage]} alt={product.name} className="w-full h-full object-contain p-2" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-300 text-6xl">💍</div>
             )}
@@ -152,8 +152,8 @@ const ProductDetail = () => {
             <div className="flex gap-2 mt-3 overflow-x-auto no-scrollbar pb-1">
               {product.images.map((img, i) => (
                 <button key={i} onClick={() => setActiveImage(i)}
-                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${i === activeImage ? 'border-gold-500 scale-105 shadow-sm' : 'border-gray-200 opacity-70'}`}>
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all bg-gray-50 flex items-center justify-center ${i === activeImage ? 'border-gold-500 scale-105 shadow-sm' : 'border-gray-200 opacity-70'}`}>
+                  <img src={img} alt="" className="w-full h-full object-contain p-0.5" />
                 </button>
               ))}
             </div>

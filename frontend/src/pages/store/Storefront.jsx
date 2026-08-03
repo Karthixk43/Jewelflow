@@ -255,10 +255,10 @@ const Storefront = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
             {products.map((p) => (
               <Link key={p.id} to={`/store/${slug}/product/${p.id}`} className="card overflow-hidden group">
-                <div className="aspect-square bg-gray-100 overflow-hidden relative">
+                <div className="aspect-square bg-gray-50 overflow-hidden relative flex items-center justify-center">
                   {p.images?.[0] ? (
                     <img src={p.images[0]} alt={p.name} loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-1" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-300 text-4xl">💍</div>
                   )}
