@@ -220,7 +220,7 @@ const Storefront = () => {
 
       {/* Hero Banner Carousel */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
-        <div className="relative h-[250px] sm:h-[320px] md:h-[400px] lg:h-[460px] rounded-2xl md:rounded-3xl overflow-hidden bg-black shadow-md group">
+        <div className="relative h-[320px] sm:h-[360px] md:h-[420px] lg:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden bg-black shadow-md group">
           {bannerSlides.map((slide, idx) => (
             <div
               key={idx}
@@ -229,10 +229,10 @@ const Storefront = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className={`w-full h-full object-cover ${idx === 0 ? 'object-[center_15%]' : idx === 1 ? 'object-[center_10%]' : 'object-[center_15%]'}`}
+                className={`w-full h-full object-cover ${idx === 0 ? 'object-[center_10%]' : idx === 1 ? 'object-[center_5%]' : 'object-[center_10%]'}`}
               />
-              {/* Soft subtle text overlay for contrast while preserving bright model photo colors */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+              {/* Very minimal text shadow gradient overlay to keep photos bright and vivid */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/15 to-transparent" />
 
               <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
                 <div className="max-w-[85%] sm:max-w-[60%] text-white">
