@@ -220,37 +220,48 @@ const Storefront = () => {
 
       {/* Hero Banner Carousel */}
       <div className="max-w-6xl mx-auto px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
-        <div className="relative h-[210px] sm:h-[280px] md:h-[360px] lg:h-[420px] rounded-2xl md:rounded-3xl overflow-hidden bg-black shadow-md group">
+        <div className="relative h-[220px] sm:h-[300px] md:h-[380px] lg:h-[440px] rounded-[20px] overflow-hidden bg-black shadow-md group">
           {bannerSlides.map((slide, idx) => (
             <div
               key={idx}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
+              {/* Blurred matching background fill for seamless empty space coverage */}
+              <img
+                src={slide.image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60"
+              />
+
+              {/* Main uncropped model image aligned right-center */}
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover object-top sm:object-center"
+                className="relative w-full h-full object-contain object-[right_center]"
               />
-              {/* Subtle gradient to keep lettering crisp over the model photo */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/25 to-transparent" />
 
+              {/* Dark gradient overlay restricted to left 45% of the banner for text */}
+              <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-black/90 via-black/70 to-transparent pointer-events-none" />
+
+              {/* Text content strictly on the left side */}
               <div className="absolute inset-0 flex items-center px-4 sm:px-10 md:px-14">
-                <div className="max-w-[85%] sm:max-w-[60%] text-white">
+                <div className="w-[50%] sm:w-[45%] text-white">
                   <p className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-widest text-gold-400 uppercase mb-0.5 sm:mb-1">
                     {slide.tagline}
                   </p>
-                  <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-sm">
+                  <h2 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-sm">
                     {slide.title}
                   </h2>
-                  <p className="text-gray-200 mt-1 text-[11px] sm:text-xs md:text-sm font-light line-clamp-2">
+                  <p className="text-gray-200 mt-1 text-[10px] sm:text-xs md:text-sm font-light line-clamp-2">
                     {slide.description}
                   </p>
                   <a
                     href="#products"
-                    className="inline-flex items-center gap-1.5 mt-3 sm:mt-5 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-semibold text-white transition-all shadow active:scale-95"
+                    className="inline-flex items-center gap-1 mt-2.5 sm:mt-4 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold text-white transition-all shadow active:scale-95"
                     style={{ backgroundColor: primaryColor }}
                   >
-                    Explore Collection <ArrowRight size={14} />
+                    Explore <ArrowRight size={13} />
                   </a>
                 </div>
               </div>
